@@ -3,3 +3,7 @@ tests.py
 venv
 
 .mysql-data
+
+.vscode
+
+__pycache__

@@ -1,47 +1,78 @@
-import mysql.connector
 import time
+from flask import Flask
+from flask.globals import request
+from flask.templating import render_template
+from mydatabase.consultas import gets, posts, deletes
 
-# time.sleep(5)
-#cnx = mysql.connector.connect(user='root', password='secret', host='db')
-#cursor = cnx.cursor()
+app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
 
-def menu():
-    print('-'*50)
-    print('''
-    Crud_Docker
-    1)crear usuario
-    2)listar usuarios
-    3)actualizar usuarios
-    4)eliminar usuarios
-    5)salir
-    ''')
-    decisicion = input(': ')
-    return decisicion
+class buscar():
+    @app.route('/form', methods=['GET'])
+    def hello_world():
+        return render_template('get.html')
 
+    @app.route('/form_name', methods=['POST'])
+    def get_name():
+        nombre = request.form['nombre']
+        return gets.consultaNombre(nombre)
 
-def _crear_user():
+    @app.route('/form_user', methods=['POST'])
+    def get_user():
+        user = request.form['user']
+        return gets.consultaUser(user)
+
+    @app.route('/form_id', methods=['POST'])
+    def get_id():
+        id = request.form['id']
+        return gets.consultaId(id)
+
+    @app.route('/form_region', methods=['POST'])
+    def get_region():
+        region = request.form['region']
+        return gets.consultaRegion(region)
+
+    @app.route('/form_all', methods=['POST'])
+    def get_all():
+        return gets.all()
+
+@app.route('/post', methods=['GET'])
+def add():
+    return render_template('post.html')
+
+@app.route('/post', methods=['POST'])
+def show_add():
+    name = request.form['user']
+    user = request.form['username']
+    region = request.form['region']
+
+    return posts.agregar(name, user, region)
+
+@app.route('/update', methods=['GET'])
+def update():
+    return render_template('update.html')
+
+@app.route('/update', methods=['POST'])
+def show_update():
     pass
 
+@app.route('/delete', methods=['GET'])
+def delete():
+    return render_template('delete.html')
+
+@app.route('/delete_id', methods=['POST'])
+def show_delete_id():
+    id = request.form['id']
+    return deletes.delete_id(id)
+
+@app.route('/delete_user', methods=['POST'])
+def show_delete_user():
+    user = request.form['user']
+    return deletes.delete_user(user)
 
 if __name__ == "__main__":
-    while True:
-        usuario = menu()
-        if usuario == '1':
-            print(1)
-            continue
-        elif usuario == '2':
-            print(2)
-            continue
-        elif usuario == '3':
-            print(3)
-            continue
-        elif usuario == '4':
-            print(4)
-            continue
-        elif usuario == '5':
-            print('adios')
-            break
-        else:
-            print('error')
-            break
+    time.sleep(5)
+    app.run(host='0.0.0.0',port=5000, debug=True)

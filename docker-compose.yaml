@@ -5,6 +5,8 @@ services:
     build: "."
     volumes:
       - .:/usr/src
+    ports: 
+    - "5000:5000"
     links: 
       - db
     depends_on:

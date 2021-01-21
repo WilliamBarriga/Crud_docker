@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flask</title>
+</head>
+
+<body>
+    <div>
+        <h1>buscar por nombre</h1>
+        <form action="/form_name" method="post">
+            <label for="id_nombre" class="mt-1"> Nombre </label>
+            <input class="form-control" type="text" placeholder="Nombre" id="id_nombre" name="nombre">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div>
+        <h1>buscar por usuario</h1>
+        <form action="/form_user" method="post">
+            <label for="id_user" class="mt-1"> Username </label>
+            <input class="form-control" type="text" placeholder="Nombre" id="id_user" name="user">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div>
+        <h1>buscar por id</h1>
+        <form action="/form_id" method="post">
+            <label for="id_id" class="mt-1"> ID </label>
+            <input class="form-control" type="text" placeholder="Nombre" id="id_id" name="id">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div>
+        <h1>buscar por region</h1>
+        <form action="/form_region" method="post">
+            <label for="id_region" class="mt-1"> Region </label>
+            <input class="form-control" type="text" placeholder="Nombre" id="id_region" name="region">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div>
+        <h1> traer todo</h1>
+        <form action="/form_all" method="post">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div>
+        <br><br>
+        <a href="/"><button>back</button></a>
+    </div>
+</body>
+
+</html>
