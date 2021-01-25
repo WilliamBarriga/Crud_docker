@@ -3,8 +3,10 @@ import json
 import time
 
 time.sleep(5)
-cnx = mysql.connector.connect(user='root', password='secret', host='db', database='docker')
+cnx = mysql.connector.connect(
+    user='root', password='secret', host='db', database='docker')
 cursor = cnx.cursor()
+
 
 class gets():
     def consultaNombre(nombre):
@@ -32,10 +34,12 @@ class gets():
         result = cursor.fetchall()
         return json.dumps(result)
 
+
 class posts():
     def agregar(name, user, region):
         try:
-            cursor.execute(f"INSERT INTO `docker`.`users` (`name`, `username`, `region`) VALUES ('{name}', '{user}', '{region}');")
+            cursor.execute(
+                f"INSERT INTO `docker`.`users` (`name`, `username`, `region`) VALUES ('{name}', '{user}', '{region}');")
             cnx.commit()
             time.sleep(1)
             result = gets.consultaUser(user)
@@ -51,7 +55,8 @@ class deletes():
     def delete_id(id):
         try:
             result = gets.consultaId(id)
-            cursor.execute(f"DELETE FROM `docker`.`users` WHERE (`idusers` = '{id}');")
+            cursor.execute(
+                f"DELETE FROM `docker`.`users` WHERE (`idusers` = '{id}');")
             cnx.commit()
             return f'el usuario {result} se a eliminado'
         except:
@@ -60,21 +65,60 @@ class deletes():
     def delete_user(user):
         try:
             result = gets.consultaUser(user)
-            cursor.execute(f"DELETE FROM `docker`.`users` WHERE (`username` = '{user}');")
+            cursor.execute(
+                f"DELETE FROM `docker`.`users` WHERE (`username` = '{user}');")
             cnx.commit()
             return f'el usuario {result} se a eliminado'
         except:
             return 'parece que el usuario no se encuentra'
 
+
 class updates():
-    def update_id(id):
-        pass
 
-    def update_user(user):
-        pass
+    def update_name(id, name):
+        try:
+            result = gets.consultaId(id)
+            cursor.execute(
+                f"UPDATE `docker`.`users` SET `name` = '{name}' WHERE (`idusers` = '{id}');")
+            cnx.commit()
+            time.sleep(1)
+            final_result = gets.consultaId(id)
+            return f'el usuario {result} ahora es {final_result}'
+        except:
+            return 'parece que el usuario no se encuentra'
 
-    def update_name(name):
-        pass
+    def update_user(id, user):
+        try:
+            result = gets.consultaId(id)
+            cursor.execute(
+                f"UPDATE `docker`.`users` SET `username` = '{user}' WHERE (`idusers` = '{id}');")
+            cnx.commit()
+            time.sleep(1)
+            final_result = gets.consultaId(id)
+            return f'el usuario {result} ahora es {final_result}'
+        except:
+            return 'parece que el usuario no se encuentra'
 
-    def update_all(id, user, name):
-        pass
+    def update_region(id, region):
+        try:
+            result = gets.consultaId(id)
+            cursor.execute(
+                f"UPDATE `docker`.`users` SET `region` = '{region}' WHERE (`idusers` = '{id}');")
+            cnx.commit()
+            time.sleep(1)
+            final_result = gets.consultaId(id)
+            return f'el usuario {result} ahora es {final_result}'
+        except:
+            return 'parece que el usuario no se encuentra'
+
+    def update_all(id, user, name, region):
+        try:
+            result = gets.consultaId(id)
+            cursor.execute(
+                f"UPDATE `docker`.`users` SET `name` = '{name}', `username` = '{user}', `region` = '{region}' WHERE (`idusers` = '{id}');")
+            cnx.commit()
+            time.sleep(1)
+            final_result = gets.consultaId(id)
+            return f'el usuario {result} ahora es {final_result}'
+        except:
+            return 'parece que el usuario no se encuentra'

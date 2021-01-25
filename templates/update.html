@@ -6,6 +6,46 @@
     <title>update</title>
 </head>
 <body>
-    <h1>update</h1>
+    <h1>UPDATE</h1>
+    <form action="/update_user" method="post">
+        <h2>Actualizar username</h2>
+        <label for="id_id">ID</label>
+        <input type="text" placeholder="ID" name="id" id="id_userid">
+        <label for="id_user">Username</label>
+        <input type="text" placeholder="username" name="user" id="id_useruser">
+        <button type="submit">Submit</button>
+    </form>
+    <form action="/update_name" method="post">
+        <h2>Actualizar nombre</h2>
+        <label for="id_nameid">ID</label>
+        <input type="text" name="id" id="id_nameid" placeholder="ID">
+        <label for="id_namename">Nombre</label>
+        <input type="text" name="name" id="id_namename" placeholder="Nombre">
+        <button type="submit">Submit</button>
+    </form>
+    <form action="/update_region" method="post">
+        <h2>Actualizar region</h2>
+        <label for="id_regionid">ID</label>
+        <input type="text" name="region" id="id_regionid" placeholder="ID">
+        <label for="id_regionregion">Region</label>
+        <input type="text" name="region" id="id_regionregion" placeholder="Region">
+        <button type="submit">Submit</button>
+    </form>
+    <form action="/update_all" method="post">
+        <h2>Actualizar Todo</h2>
+        <label for="id_id">ID</label>
+        <input type="text" name="id" id="id_id" placeholder="ID">
+        <label for="id_name">Nombre</label>
+        <input type="text" name="name" id="id_name" placeholder="Nombre">
+        <label for="id_user">Username</label>
+        <input type="text" name="user" id="id_user" placeholder="Username">
+        <label for="id_region">Region</label>
+        <input type="text" name="region" id="id_region" placeholder="Region">
+        <button type="submit">Submit</button>
+    </form>
+    <div>
+        <br><br>
+        <a href="/"><button>back</button></a>
+    </div>
 </body>
 </html>
